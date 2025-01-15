@@ -1,15 +1,16 @@
 #!/user/bin/env bash
 
 function finder {
-	echo $(find . -type f | wc -l)
+	path=${1:-"$PWD"}
+	echo $(find $1 . -type f | wc -l)
 }
 
-num_files=$(finder)
+num_files=$(finder $1)
 indicator=1
 
 while [[ $indicator = 1 ]]
 do
-	echo "Whats you guess about the number of files, excluding directories, in the current wd and its subdirectories?"
+	echo "What's your guess about the number of files, excluding directories, in the directory you passed as argument (working directory is default) and its subdirectories, including hidden files?"
 	read guess
 		
 	if [[ $guess = $num_files ]]
